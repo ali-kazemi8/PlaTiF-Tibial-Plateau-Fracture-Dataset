@@ -97,104 +97,82 @@ And just like that, you're ready\! ✅
 
 ### Step 3: Run Our Sample Visualization Script\! 🚀
 
-We've prepared a friendly script, `visualize_data.py`, to help you visualize a patient's CT scan and fracture mask.
+We've prepared a friendly script, `Read_Data_PythonCode.py`, to help you visualize a patient's X-ray image and fracture mask.
 
-*(If you haven't already, create `Python/visualize_data.py` and paste the following content into it.)*
+*(If you haven't already, create `Python/Read_Data_PythonCode.py` and paste the following content into it.)*
 
 ```python
 # Python/visualize_data.py
-
-import argparse
+import os
 import scipy.io
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import numpy as np
 
-def load_data(file_path):
-    """Loads and returns the .mat file data."""
-    print(f"Loading data from {file_path}... 📂")
-    try:
-        data = scipy.io.loadmat(file_path)
-        # Assuming the data is stored in a struct named 'patientData'
-        patient_data = data['patientData'][0, 0]
-        image = patient_data['image']
-        mask = patient_data['segmentationMask']
-        print("Data loaded successfully! 🎉")
-        return image, mask
-    except Exception as e:
-        print(f"Oops! Error loading .mat file: {e} 💔")
-        return None, None
+# --- 1. Setup: Define file path and patient ID ---
+base_path = r'C:\Users\Ali\Desktop\PlaTiF Dataset'
+patient_id = 'Patient_ID_001'
+file_path = os.path.join(base_path, f'{patient_id}.mat')
 
-def visualize_3d(image, mask, slice_index=None):
-    """
-    Visualizes a 2D slice or a 3D scatter plot of the data.
-    """
-    if slice_index is not None and slice_index < image.shape[2]:
-        # Show a 2D slice
-        print(f"Displaying 2D slice {slice_index}... 🖼️")
-        plt.figure(figsize=(12, 6))
-        
-        plt.subplot(1, 2, 1)
-        plt.imshow(image[:, :, slice_index], cmap='gray')
-        plt.title(f'CT Image (Slice {slice_index}) 🦴')
-        plt.axis('off')
-        
-        plt.subplot(1, 2, 2)
-        plt.imshow(image[:, :, slice_index], cmap='gray')
-        # Overlay the mask with transparency for a clear view!
-        mask_overlay = np.ma.masked_where(mask[:, :, slice_index] == 0, mask[:, :, slice_index])
-        plt.imshow(mask_overlay, cmap='jet', alpha=0.5)
-        plt.title(f'Image with Fracture Mask (Slice {slice_index}) ✨')
-        plt.axis('off')
-        
-        plt.tight_layout()
-        plt.show()
-    else:
-        # Show a 3D plot of the mask (sub-sampled for smoother rendering!)
-        print("Generating 3D mask visualization (sub-sampled for speed!)... 🌟")
-        points = np.argwhere(mask > 0)
-        sub_points = points[::100]  # Plot 1 in every 100 points for performance
-        
-        fig = plt.figure()
-        ax = fig.add_subplot(111, projection='3d')
-        ax.scatter(sub_points[:, 0], sub_points[:, 1], sub_points[:, 2], c='red', marker='o', s=1) # Smaller points for cleaner look
-        
-        ax.set_xlabel('X Axis')
-        ax.set_ylabel('Y Axis')
-        ax.set_zlabel('Z Axis')
-        plt.title('3D Visualization of Fracture Mask 💫')
-        plt.show()
+# --- 2. Load Data ---
+mat_data = scipy.io.loadmat(file_path)
+patient_data = mat_data[patient_id]
 
-def main():
-    parser = argparse.ArgumentParser(description="Load and visualize PlaTiF dataset .mat files with style! ✨")
-    parser.add_argument('--file', type=str, required=True, help="Path to your patient's .mat file. 📄")
-    parser.add_argument('--slice', type=int, help="Optional: Specify a 2D slice index for detailed viewing! 🔍")
-    
-    args = parser.parse_args()
-    
-    image, mask = load_data(args.file)
-    
-    if image is not None and mask is not None:
-        visualize_3d(image, mask, args.slice)
+# --- 3. Access Image Data from the 'im0' struct ---
+im0_data = patient_data[0, 0]['im0']
+original_img = im0_data[0, 0]['OriginalImage']
+bw_mask = im0_data[0, 0]['BW']
+masked_img = im0_data[0, 0]['maskedImage']
+Schatzker_label = im0_data[0, 0]['label'][0, 0]
 
-if __name__ == "__main__":
-    main()
+# --- 4. Visualize the Data (with conditional plotting) ---
+
+# Check if Coronal_CT exists to determine subplot layout
+if 'Coronal_CT' in patient_data.dtype.names:
+    num_cols = 4
+    fig, axes = plt.subplots(1, num_cols, figsize=(20, 5)) # Wider figure for 4 plots
+    coronal_ct_image = patient_data[0, 0]['Coronal_CT']
+else:
+    num_cols = 3
+    fig, axes = plt.subplots(1, num_cols, figsize=(18, 6)) # Original figure size
+
+fig.suptitle(f'Data for {patient_id}', fontsize=16)
+
+# Plot the common images
+axes[0].imshow(original_img, cmap='gray')
+axes[0].set_title(f'Schatzker Classification Label: {Schatzker_label}')
+axes[0].axis('off')
+
+axes[1].imshow(bw_mask, cmap='gray')
+axes[1].set_title('Tibia Bone Plateau Mask')
+axes[1].axis('off')
+
+axes[2].imshow(masked_img, cmap='gray')
+axes[2].set_title('Segmented Tibia Bone')
+axes[2].axis('off')
+
+# Plot the optional fourth image only if it exists
+if num_cols == 4:
+    axes[3].imshow(coronal_ct_image, cmap='gray')
+    axes[3].set_title('A Coronal CT Slice')
+    axes[3].axis('off')
+
+plt.tight_layout()
+plt.show()
 ```
 
 **How to Run It:**
 
 Navigate to the `Python/` directory in your terminal (with your `venv` active) and try these commands:
 
-  * **To see a specific 2D slice (e.g., slice 100):**
+  * **To see a specific 2D slice (e.g., im0 in Patient_ID_001):**
     ```bash
-    python visualize_data.py --file /path/to/your/dataset/patient_001.mat --slice 100
+    python Read_Data_PythonCode.py --file /path/to/your/dataset/Patient_ID_001.mat --im0
     ```
     You'll see a beautiful side-by-side comparison\! 🖼️
-  * **To explore the 3D fracture mask:**
+  * **To explore the X-ray image:**
     ```bash
-    python visualize_data.py --file /path/to/your/dataset/patient_001.mat
+    python Read_Data_PythonCode.py --file /path/to/your/dataset/Patient_ID_001.mat
     ```
-    Prepare for an interactive 3D view of the fracture\! 🤩
+    Prepare for an interactive X-ray image of Tibia bone\! 🤩
 
 -----
 
@@ -215,84 +193,57 @@ We've crafted `visualize_data.m` to make visualizing your data a breeze.
 
 ```matlab
 % MATLAB/visualize_data.m
+clc
+clear
+close all
 
-function visualize_data(filePath, sliceIndex)
-    % visualize_data: Loads and beautifully visualizes a specific slice from a PlaTiF .mat file.
-    %
-    % Inputs:
-    %   filePath (string): The full path to your patient's .mat file. 📄
-    %   sliceIndex (int): The index of the 2D slice you want to admire. 🔍
-    %
-    % Example Usage:
-    % visualize_data('C:\MyData\PlaTiF\patient_002.mat', 120);
+% --- 1. Setup: Define file path and patient ID ---
+basePath = 'C:\Users\Ali\Desktop\PlaTiF Dataset';
+patientID = 'Patient_ID_001';
+filePath = fullfile(basePath, [patientID, '.mat']);
 
-    fprintf('--- Starting PlaTiF Visualization! ✨ ---\n');
+% --- 2. Load Data ---
+dataStruct = load(filePath);
+patientData = dataStruct.(patientID);
 
-    % --- Configuration (Defaults if not provided) ---
-    if nargin < 1
-        % Set a default file path for easy testing
-        filePath = 'C:\path\to\your\dataset\patient_001.mat'; % <--- **UPDATE THIS PATH!**
-        warning('No file path provided. Using default: %s (Please update for your data!)', filePath);
-    end
-    
-    if nargin < 2
-        % Set a default slice index
-        sliceIndex = 100;
-        disp(['No slice index provided. Using default: ' num2str(sliceIndex) ' 📏']);
-    end
+% --- 3. Access Image Data from the 'im0' struct ---
+im0_data = patientData.im0;
+originalImg = im0_data.OriginalImage;
+bwMask = im0_data.BW;
+maskedImg = im0_data.maskedImage;
+SchatzkerLabel = im0_data.label;
 
-    % --- Load Data ---
-    fprintf('Loading data from %s... 📂\n', filePath);
-    try
-        data = load(filePath);
-        
-        % Access the patient data struct
-        % Adjust 'patientData' if your .mat file uses a different variable name
-        patientData = data.patientData; 
-        image = patientData.image;
-        mask = patientData.segmentationMask;
-        fprintf('Data loaded successfully! 🎉\n');
-        
-    catch ME
-        fprintf('Oops! Error loading .mat file: %s 💔\n', ME.message);
-        return;
-    end
+% --- 4. Visualize the Data (with conditional plotting) ---
+figure('Name', ['Data for ', patientID]);
 
-    % --- Validate Slice Index ---
-    if sliceIndex > size(image, 3) || sliceIndex < 1
-        fprintf('Error: The chosen sliceIndex (%d) is out of bounds (max: %d). Please pick a valid slice! 🛑\n', sliceIndex, size(image, 3));
-        return;
-    end
+% Check if Coronal_CT exists to determine subplot layout
+if isfield(patientData, 'Coronal_CT')
+    numCols = 4;
+    coronalCT_image = patientData.Coronal_CT;
+else
+    numCols = 3;
+end
 
-    fprintf('Preparing to visualize slice %d... 🖼️\n', sliceIndex);
-    
-    % Extract the specific 2D slice
-    img_slice = image(:, :, sliceIndex);
-    mask_slice = mask(:, :, sliceIndex);
+% Subplot 1: Original Image
+subplot(1, numCols, 1);
+imshow(originalImg, []);
+title(['Schatzker Classification Label: ', num2str(SchatzkerLabel)]);
 
-    % --- Create a Stunning Figure! ---
-    figure('Name', ['PlaTiF Visualization - Slice ' num2str(sliceIndex)], 'NumberTitle', 'off');
-    
-    % Display the CT image in grayscale
-    subplot(1, 2, 1);
-    imshow(img_slice, []); % [] scales intensity values appropriately
-    title(['CT Image (Slice ' num2str(sliceIndex) ') 🦴'], 'FontSize', 14);
-    colormap gray; % Ensure grayscale colormap
+% Subplot 2: Tibia Mask (BW)
+subplot(1, numCols, 2);
+imshow(bwMask);
+title('Tibia Bone Plateau Mask');
 
-    % Display the image with a vibrant mask overlay!
-    subplot(1, 2, 2);
-    imshow(img_slice, []);
-    hold on;
-    % Use visboundaries to elegantly outline the fracture mask
-    boundaries = bwboundaries(mask_slice);
-    if ~isempty(boundaries)
-        visboundaries(boundaries, 'Color', 'red', 'LineWidth', 1.5); % A bold red for clarity!
-    end
-    hold off;
-    title(['Image with Fracture Mask (Slice ' num2str(sliceIndex) ') ✨'], 'FontSize', 14);
-    colormap gray; % Ensure grayscale for the base image
+% Subplot 3: Masked Image
+subplot(1, numCols, 3);
+imshow(maskedImg, []);
+title('Segmented Tibia Bone');
 
-    fprintf('Visualization complete! Enjoy the view! 😊\n');
+% Plot the optional fourth image only if it exists
+if numCols == 4
+    subplot(1, numCols, 4);
+    imshow(coronalCT_image, []);
+    title('A Coronal CT Slice');
 end
 ```
 
