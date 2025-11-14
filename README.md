@@ -173,8 +173,6 @@ Navigate to the `Python/` directory in your terminal (with your `venv` active) a
     ```bash
     python Read_Data_PythonCode.py --file /path/to/your/dataset/Patient_ID_001.mat
     ```
-    Prepare for an interactive X-ray image of the Tibia bone\! 🤩
-
 -----
 
 ## 📊 MATLAB Magic: For the MATLAB Aficionados\!
