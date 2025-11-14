@@ -8,8 +8,7 @@ Welcome to the PlaTiF (Tibial Plateau Fracture) Dataset repository\! 🎉 This g
 2.  **Download the Dataset:** Grab the actual patient data. ([Access Link to PlaTiF Dataset](https://www.kaggle.com/datasets/alikazemi8/bonetibia-plateau-fracure-schatzker-classification)) 💾
 3.  **Choose Your Path:** Pythonista or MATLAB guru? Pick your preferred language\! 🐍📊
 4.  **Install Dependencies:** A few quick installs to get everything running smoothly. 🛠️
-5.  **Run & Visualize:** See the magic happen with our sample scripts\! 🖼️
-6.  **Explore & Innovate:** Adapt our code for your own research\! 🚀
+5.  **Run & Visualize:** Read and Plot X-ray Dataset\! 🖼️
 
 ## 🚧 General Setup: Getting Started is Easy\!
 
