@@ -46,7 +46,7 @@ Each `.mat` file is a treasure trove of information, organized neatly into a str
 │ 🏷️ label → Class label (1–7) for Schatzker fracture type
 
 ├── 🧾 im1:
-└── …
+…
 
 └── 📐 Coronal_CT (optional) → Associated CT image if available
 
