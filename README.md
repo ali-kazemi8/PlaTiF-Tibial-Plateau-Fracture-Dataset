@@ -35,7 +35,7 @@ Our scripts need data to shine\!
 
 ### Data Structure at a Glance 🧩
 
-Each `.mat` file is a treasure trove of information, organized neatly into a structured variable (e.g., `patientData`) containing:
+Each `.mat` file is a treasure trove of information, organized neatly into a structured variable (e.g., `Patient_ID_001`) containing:
 
 📁 Patient_ID_XXX
 
