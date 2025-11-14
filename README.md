@@ -255,7 +255,7 @@ end
 
 -----
 
-Finally, you'll see a beautiful figure pop up with your X-ray image and the fracture mask 🤩
+Finally, the knee X-ray image is displayed along with the annotation images 🤩
 
 <img width="1366" height="444" alt="Figure_1" src="https://github.com/user-attachments/assets/0680a192-107a-4f49-9fe9-d2b9e63ca831" />
 
