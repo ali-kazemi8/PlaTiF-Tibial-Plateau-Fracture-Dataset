@@ -1,3 +1,6 @@
+
+<img width="1366" height="663" alt="Figure_1" src="https://github.com/user-attachments/assets/bccdd625-499b-4791-a610-c600a9f26c89" />
+
 PlaTiF Dataset: Code Usage Guide 💻🦴
 
 Welcome to the PlaTiF (Tibial Plateau Fracture) Dataset repository\! 🎉 This guide will help you navigate and utilize the MATLAB and Python scripts we've provided to explore the fascinating world of tibial plateau fracture images and their segmentation masks.
