@@ -1,4 +1,3 @@
-
 PlaTiF Dataset: Code Usage Guide 💻🦴
 
 Welcome to the PlaTiF (Tibial Plateau Fracture) Dataset repository\! 🎉 This guide will help you navigate and utilize the MATLAB and Python scripts we've provided to explore the fascinating world of tibial plateau fracture images and their segmentation masks.
@@ -104,6 +103,7 @@ We've prepared a friendly script, `Read_Data_PythonCode.py`, to help you visuali
 
 ```python
 # Python/visualize_data.py
+
 import os
 import scipy.io
 import matplotlib.pyplot as plt
@@ -164,7 +164,7 @@ plt.show()
 
 Navigate to the `Python/` directory in your terminal (with your `venv` active) and try these commands:
 
-  * **To see a specific 2D slice (e.g., im0 in Patient_ID_001):**
+  * **To see a specific X-ray knee image (e.g., im0 in Patient_ID_001):**
     ```bash
     python Read_Data_PythonCode.py --file /path/to/your/dataset/Patient_ID_001.mat --im0
     ```
@@ -173,7 +173,7 @@ Navigate to the `Python/` directory in your terminal (with your `venv` active) a
     ```bash
     python Read_Data_PythonCode.py --file /path/to/your/dataset/Patient_ID_001.mat
     ```
-    Prepare for an interactive X-ray image of Tibia bone\! 🤩
+    Prepare for an interactive X-ray image of the Tibia bone\! 🤩
 
 -----
 
@@ -188,12 +188,13 @@ Our MATLAB scripts reside in the `MATLAB/` directory. Let's get them running\!
 
 ### Step 2: Unleash the Visualization Script\! ✨
 
-We've crafted `visualize_data.m` to make visualizing your data a breeze.
+We've crafted `Read_Data_MatlabCode.m` to make visualizing your data a breeze.
 
-*(If you haven't already, create `MATLAB/visualize_data.m` and paste the following content into it.)*
+*(If you haven't already, create `MATLAB/Read_Data_MatlabCode.m` and paste the following content into it.)*
 
 ```matlab
-% MATLAB/visualize_data.m
+% MATLAB/Read_Data_MatlabCode.m
+
 clc
 clear
 close all
@@ -252,20 +253,10 @@ end
 
 1.  In MATLAB, navigate to the `MATLAB/` directory in the Current Folder browser.
 
-2.  In the MATLAB Command Window, call the function with your file path and desired slice:
+2.  In the MATLAB Command Window, run the script with your file path and desired patient:
 
-    ```matlab
-    % First, define the path to one of your downloaded .mat files!
-    myPatientFile = 'C:\Your\Path\To\PlaTiF_Dataset\patient_001.mat'; % <--- **IMPORTANT: CHANGE THIS PATH!**
-
-    % Then, choose a slice number!
-    mySliceNumber = 125; 
-
-    % Now, let's visualize!
-    visualize_data(myPatientFile, mySliceNumber);
-    ```
-
-    You'll see a beautiful figure pop up with your CT image and the fracture mask\! 🤩
+-----
+    Finally, you'll see a beautiful figure pop up with your X-ray image and the fracture mask\! 🤩
 
 <img width="1366" height="444" alt="Figure_1" src="https://github.com/user-attachments/assets/0680a192-107a-4f49-9fe9-d2b9e63ca831" />
 
@@ -277,5 +268,3 @@ This code is just a starting point\! Feel free to:
 
   * **Modify the Visualization:** Experiment with different colormaps, transparency levels, or 3D rendering techniques. 🎨
   * **Batch Processing:** Adapt the scripts to process multiple patient files automatically. 🔄
-  * **Feature Extraction:** Use the masks to extract quantitative features for your research. 🔬
-  * **Integrate into your workflow:** Incorporate these loading functions into your own machine learning pipelines\! 🤖
