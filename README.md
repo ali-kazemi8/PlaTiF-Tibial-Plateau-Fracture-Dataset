@@ -68,8 +68,10 @@ cd Python
 python -m venv venv
 
 # Activate your new environment!
+
 # On macOS/Linux:
 source venv/bin/activate
+
 # On Windows:
 .\venv\Scripts\activate
 ```
@@ -102,8 +104,6 @@ We've prepared a friendly script, `Read_Data_PythonCode.py`, to help you visuali
 *(If you haven't already, create `Python/Read_Data_PythonCode.py` and paste the following content into it.)*
 
 ```python
-# Python/visualize_data.py
-
 import os
 import scipy.io
 import matplotlib.pyplot as plt
@@ -191,8 +191,6 @@ We've crafted `Read_Data_MatlabCode.m` to make visualizing your data a breeze.
 *(If you haven't already, create `MATLAB/Read_Data_MatlabCode.m` and paste the following content into it.)*
 
 ```matlab
-% MATLAB/Read_Data_MatlabCode.m
-
 clc
 clear
 close all
