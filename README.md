@@ -40,10 +40,10 @@ Each `.mat` file is a treasure trove of information, organized neatly into a str
 📁 Patient_ID_XXX
 
 ├── 🧾 im0
-│ ├── 🖼️ OriginalImage → Original X-ray image
-│ ├── ⚫ BW → Binary mask of segmented tibial plateau
-│ ├── 🖼️ maskedImage → X-ray masked with segmentation
-│ └── 🏷️ label → Class label (1–7) for Schatzker fracture type
+│ 🖼️ OriginalImage → Original X-ray image
+│ ⚫ BW → Binary mask of segmented tibial plateau
+│ 🖼️ maskedImage → X-ray masked with segmentation
+│ 🏷️ label → Class label (1–7) for Schatzker fracture type
 
 ├── 🧾 im1
 │ └── …
