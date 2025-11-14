@@ -99,7 +99,7 @@ And just like that, you're ready\! ✅
 
 ### Step 3: Run Our Sample Visualization Script\! 🚀
 
-We've prepared a friendly script, `Read_Data_PythonCode.py`, to help you visualize a patient's X-ray image and fracture mask.
+We've prepared a friendly script, `Read_Data_PythonCode.py`, to help you visualize a patient's X-ray image and tibia bone mask.
 
 *(If you haven't already, create `Python/Read_Data_PythonCode.py` and paste the following content into it.)*
 
