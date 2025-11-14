@@ -261,7 +261,14 @@ Finally, the knee X-ray image is displayed along with the annotation images 🤩
 
 ## 💡 Explore and Innovate\!
 
-This code is just a starting point\! Feel free to:
+This code is just a starting point! Feel free to:
 
-  * **Modify the Visualization:** Experiment with different colormaps, transparency levels, or 3D rendering techniques. 🎨
-  * **Batch Processing:** Adapt the scripts to process multiple patient files automatically. 🔄
+ * Modify the Visualization: Experiment with different colormaps (cmap), transparency levels (alpha), or try overlaying the mask contour instead of the full mask. 🎨
+
+ * Batch Processing: Adapt the scripts to automatically process and save visualizations for your entire dataset. 🔄
+
+ * Feature Extraction: Use the segmentation masks to automatically calculate features like fracture area, bone dimensions, or other key morphological measurements. 🔬
+
+ * Data Augmentation: Apply transformations (rotation, scaling, flipping) to your 2D images and masks to expand your dataset for deep learning. 🤖
+
+ * Train a Model: Use this dataset to train a U-Net or other semantic segmentation model to automatically segment the tibia in new X-ray images! 🧠
