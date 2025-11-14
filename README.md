@@ -8,7 +8,7 @@ Welcome to the PlaTiF (Tibial Plateau Fracture) Dataset repository\! 🎉 This g
 2.  **Download the Dataset:** Grab the actual patient data ([Access Link to PlaTiF Dataset](https://www.kaggle.com/datasets/alikazemi8/bonetibia-plateau-fracure-schatzker-classification)). 💾
 3.  **Choose Your Path:** Pythonista or MATLAB guru? Pick your preferred language\! 🐍📊
 4.  **Install Dependencies:** A few quick installs to get everything running smoothly. 🛠️
-5.  **Run & Visualize:** Read and plot X-ray image, Tibia mask, and Schatzker classification label\! 🖼️
+5.  **Run & Visualize:** Read and plot X-ray image, Tibia mask, and Schatzker classification label. 🖼️
 
 ## 🚧 General Setup: Getting Started is Easy\!
 
@@ -256,7 +256,8 @@ end
 2.  In the MATLAB Command Window, run the script with your file path and desired patient:
 
 -----
-    Finally, you'll see a beautiful figure pop up with your X-ray image and the fracture mask\! 🤩
+
+Finally, you'll see a beautiful figure pop up with your X-ray image and the fracture mask 🤩
 
 <img width="1366" height="444" alt="Figure_1" src="https://github.com/user-attachments/assets/0680a192-107a-4f49-9fe9-d2b9e63ca831" />
 
