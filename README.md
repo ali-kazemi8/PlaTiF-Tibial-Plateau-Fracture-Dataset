@@ -1,8 +1,6 @@
 PlaTiF Dataset: Code Usage Guide 💻🦴
 
-Welcome to the PlaTiF (Tibial Plateau Fracture) Dataset repository\! 🎉 This guide will help you effortlessly navigate and utilize the MATLAB and Python scripts we've provided to explore the fascinating world of tibial plateau fracture images and their segmentation masks.
-
-Whether you're a seasoned researcher or just starting, we've got you covered\! Let's dive in and make some beautiful visualizations\! ✨
+Welcome to the PlaTiF (Tibial Plateau Fracture) Dataset repository\! 🎉 This guide will help you navigate and utilize the MATLAB and Python scripts we've provided to explore the fascinating world of tibial plateau fracture images and their segmentation masks.
 
 🗺️ Your PlaTiF Journey: A Quick Roadmap
 
