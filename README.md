@@ -259,6 +259,11 @@ Finally, the knee X-ray image is displayed along with the annotation images 🤩
 
 
 Schatzker Classification System:
+<div align="center">
+  <img width="592" height="474" alt="inbox_2650414_8f817d7d3f89c2dc9b99b7b5960b2cb1_FotoJet" src="https://github.com/user-attachments/assets/26b4588c-37b6-4241-8766-67ddcfd80b06" />
+</div>
+
+
 
 <img width="592" height="474" alt="inbox_2650414_8f817d7d3f89c2dc9b99b7b5960b2cb1_FotoJet" src="https://github.com/user-attachments/assets/26b4588c-37b6-4241-8766-67ddcfd80b06" />
 
